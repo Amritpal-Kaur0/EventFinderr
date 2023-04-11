@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekend Event Planner</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <style>
+    .event {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin: 0.5rem;
+      cursor: pointer;
+    }
+    #event-container,
+    #selected-event,
+    #travel-info {
+      margin: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weekend Event Planner</h1>
+  <div id="location-input">
+    <label for="user-location">Enter your location:</label>
+    <input type="text" id="user-location" placeholder="e.g. Toronto, ON" oninput="handleAddressInput(event)">
+    <div id="invalid-address-warning" class="invalid-address-warning">This is not a valid address.</div>
+    <button id="update-location">Update Location</button>
+ <div id="address-suggestions"></div>
+  </div>
+  <div id="event-container">
+    <h2>Events in Toronto</h2>
+  </div>
+  <div id="selected-event">
+    <h2>Selected Event</h2>
+  </div>
+  <div id="travel-info">
+    <h2>Travel Information</h2>
+  </div>
+  <button id="save-btn">Save Events</button>
+  <script src="./assets/script.js"></script>
+  <div id="saved-location"></div>
+</body>
+</html>

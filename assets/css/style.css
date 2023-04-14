@@ -1,0 +1,259 @@
+/* Fonts  */
+@import url(./clash-display.css);
+
+:root {
+  --dark : #212529;
+  --brand:#1723d1;
+  --brand-light:#6b72c7;
+  --brand-rgb:18, 10, 200;
+  --body:#727272;
+  --font-family:'ClashDisplay',sans-serif;
+  --box-shadow:0px 15px 25px rgb(173, 161, 161);
+  --transition:all 0..5s ease;
+}
+body {
+  font-family: var(--font-family)!important;
+  margin: 0 auto;
+  color: var(--body);
+  padding: 0px;
+  line-height: 1.7;
+}
+h1,h2,h3,h4,h5,h6 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: var(--dark);
+}
+a{
+  text-decoration: none;
+  color: var(--brand);
+  transition: var(--transition);
+}
+a:hover{
+  color:white!important;
+  background-color: var(--brand);
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+.section-padding{
+  padding-top: 140px;
+  padding-bottom: 140px;
+}
+.navbar{
+  box-shadow: var(--box-shadow);
+  width: 1;
+  padding: 15px;
+}
+ .navbar-brand{
+  color:#161c67 !important;
+  font-weight: 500;
+  font-size: 1.9rem !important;
+  text-shadow: var(--box-shadow);
+}
+.nav-link:active{
+  color: var(--brand);
+}
+.container-fluid{
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--dark);
+}
+
+/* hero  */
+#hero{
+  background: linear-gradient(rgba(var(--brand-rgb), 0.498),rgba(var(--brand-rgb), 0.539));
+  background-image: url(../images/2.jpg);
+  opacity:1;
+  background-size: cover;
+  background-position: center;
+}
+.herotext{
+  position: relative;
+  color: rgb(0, 0, 0);
+ 
+}
+.btn{
+  border:2px solid black;
+  padding:5px 25px;
+}
+.btn:hover{
+  background-color: #545bc4;
+  color:white;
+}
+
+/* About  */
+#event-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* setion title  */
+.section-title{
+  margin-bottom:60px ;
+}
+.section-title .line{
+  width:60px;
+  height:4px;
+  background-color: var(--brand);
+  margin:16px auto 24px auto;
+}
+.section p{
+  max-width:400px;
+  margin-left:auto;
+  margin-right: auto;
+}
+.images{
+  height:700px;
+  width:700px
+}
+
+/* iconbox */
+.iconbox{
+  width:70px;
+  height:70px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(var(--brand-rgb),0.307),rgba(var(--brand-rgb),0.238));
+  color:var(--brand);
+  font-size:34px;
+  flex:none;
+}
+
+/* review */
+.review small{
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.review-head{
+  position: relative;
+}
+.review-head::after{
+  content:"";
+  width:28px;
+  height:28px;
+  position: absolute;
+  bottom: -14px;
+  background-color: rgb(249, 246, 246);
+  transform:rotate(45deg)
+}
+
+/* Team  */
+.team-member-content{
+  background-color:var(--brand-light);
+  position: relative;
+  left:50%;
+  width:calc(40px-4px);
+  transform :translateX(-70%) ;
+  padding:4px;
+ transition:var(--transition) ;
+ opacity: 0;
+}
+.text{
+  padding:5px 1px;
+  margin:5px 1px;
+}
+.team-member:hover .team-member-content{
+opacity: 1;
+bottom:114px;
+width:188px
+}
+.image-zoom-warpper{
+  width:250px;
+}
+
+/* Contact us  */
+#contact{
+  position: relative;
+  z-index: 2;
+}
+#contact::after{
+  content: "";
+  width:100%;
+  height:70%;
+  background: linear-gradient(rgba(var(--brand-rgb),0.8),rgba(var(--brand-rgb),0.8)),url(../images/4.jpg);
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left:0;
+  z-index: -1;
+}
+#contact .form-control{
+  border-radius: 0;
+}
+#contact .form-control:focus{
+  box-shadow:none;
+  border-color: var(--brand);
+}
+
+
+
+
+
+/* Event Display  */
+.event {
+  border: 1px solid #ccc;
+  padding: 10px;
+height: 150px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+.event-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.event-time {
+  font-size: 0.9em;
+  color: #666;
+}
+#save-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#saved-location {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+.invalid-address-warning {
+  color: red;
+  font-size: 0.8rem;
+  display: none;
+}
+.address-suggestion {
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  margin: 0.1rem 0;
+}
+.address-suggestion:hover {
+  background-color: #e8e8e8;
+}
+.event {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+#event-container,
+#selected-event,
+#travel-info {
+  margin: 1rem;
+}

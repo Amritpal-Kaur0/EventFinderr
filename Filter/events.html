@@ -1,62 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./css/mobiscroll.jquery.min.css" rel="stylesheet" />
     <link href="./eventstyle.css" rel="stylesheet" />
     <title>Event Display Page</title>
-</head>
-<body>
-  <div>
-    <label for="interest">Choose your main interest:</label>
-    <br>
-    <input type="checkbox" name="interest" value="music" id="interest-music">
-    <label for="interest-music">Music</label>
-    <input type="checkbox" name="interest" value="sports" id="interest-sports">
-    <label for="interest-sports">Sports</label>
-    <input type="checkbox" name="interest" value="arts" id="interest-arts">
-    <label for="interest-arts">Arts and Theatre</label>
-    <input type="checkbox" name="interest" value="comedy" id="interest-comedy">
-    <label for="interest-comedy">Comedy</label>
-    <input type="checkbox" name="interest" value="family" id="interest-family">
-    <label for="interest-family">Family Events</label>
-  </div>
-  
-  <div>
-    <label for="budget">Budget:</label>
-    <br>
-    <select name="budget" id="budget">
-      <option value="">Any</option>
-      <option value="less-than-100">Less than $100</option>
-      <option value="100-to-200">$100 to $200</option>
-      <option value="200-to-300">$200 to $300</option>
-      <option value="300-plus">$300+</option>
-    </select>
-  </div>
-  
-  <div>
-    <label for="distance">Total distance willing to travel:</label>
-    <br>
-    <select name="distance" id="distance">
-      <option value="">Any</option>
-      <option value="less-than-20km">Less than 20km</option>
-      <option value="20km-to-30km">20km to 30km</option>
-      <option value="30km-to-40km">30km to 40km</option>
-      <option value="40km-plus">40km+</option>
-    </select>
-  </div>
-  
-  <button type="button" onclick="location.href='../eventdisplay.html' ">Filter</button>
-  
-  <div id="events-list"></div>
+  </head>
+  <body>
+    <div id="event-display-page">
+      <div>
+        <label for="interest">Choose your main interest:</label>
+        <br />
+        <input
+          type="checkbox"
+          name="interest"
+          value="music"
+          id="interest-music"
+        />
+        <label for="interest-music">Music</label>
+        <input
+          type="checkbox"
+          name="interest"
+          value="sports"
+          id="interest-sports"
+        />
+        <label for="interest-sports">Sports</label>
+        <input
+          type="checkbox"
+          name="interest"
+          value="arts"
+          id="interest-arts"
+        />
+        <label for="interest-arts">Arts and Theatre</label>
+        <input
+          type="checkbox"
+          name="interest"
+          value="comedy"
+          id="interest-comedy"
+        />
+        <label for="interest-comedy">Comedy</label>
+        <input
+          type="checkbox"
+          name="interest"
+          value="family"
+          id="interest-family"
+        />
+        <label for="interest-family">Family Events</label>
+      </div>
 
-  <div id="demo-time"></div>
+      <div>
+        <label for="budget">Budget:</label>
+        <br />
+        <select name="budget" id="budget">
+          <option class="budgetstart" value="">Any</option>
+          <option value="less-than-100">Less than $100</option>
+          <option value="100-to-200">$100 to $200</option>
+          <option value="200-to-300">$200 to $300</option>
+          <option value="300-plus">$300+</option>
+        </select>
+      </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="./js/mobiscroll.jquery.min.js"></script>
-  <script src="./eventsscript.js"></script>
+      <div>
+        <label for="distance">Total distance willing to travel:</label>
+        <br />
+        <select name="distance" id="distance">
+          <option value="">Any</option>
+          <option value="less-than-20km">Less than 20km</option>
+          <option value="20km-to-30km">20km to 30km</option>
+          <option value="30km-to-40km">30km to 40km</option>
+          <option value="40km-plus">40km+</option>
+        </select>
+      </div>
 
-</body>
+      <button type="button" onclick="location.href='../eventdisplay.html' ">
+        Filter
+      </button>
+    </div>
+    <div id="events-list"></div>
+
+    <div id="demo-time"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./js/mobiscroll.jquery.min.js"></script>
+    <script src="./eventsscript.js"></script>
+  </body>
 </html>

@@ -1,0 +1,33 @@
+* {
+  text-align: center;
+}
+body {
+  background-image: url(../assets/images/eventsbackground.jpg);
+  background-size: 3100px 2100px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+div {
+  margin: 10px;
+}
+
+#budget,
+#distance {
+  border-radius: 5px;
+}
+
+#event-display-page {
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 25px;
+}

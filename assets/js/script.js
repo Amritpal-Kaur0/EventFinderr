@@ -127,6 +127,7 @@ function displayTravelInfo(travelInfo) {
 
   for (const mode in travelInfo) {
     const modeInfo = document.createElement("div");
+    modeInfo.classList.add("travel-info-mode");
     modeInfo.textContent = `${mode}: ${travelInfo[mode].distance.toFixed(
       2
     )} km, ${travelInfo[mode].time.toFixed(0)} minutes`;

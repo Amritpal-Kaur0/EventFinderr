@@ -28,7 +28,7 @@ async function getTimeAndDistance(origin, destination, travelMode) {
   const apiKeyBingMaps =
     "AiIMmp6rNENDUYfZjjPyk6DynJOPYEc1cxG6szcKMSUJH889pMIC_XeVnLVyYnSW";
   const mode = travelMode === "Transit" ? "transit" : travelMode.toLowerCase();
-  const url = `https://dev.virtualearth.net/REST/v1/Routes/${mode}?wp.0=${origin}&wp.1=${destination}&key=${apiKeyBingMaps}`;
+  const url = `https://dev.virtualearth.net/REST/v1/Routes/${mode}?wp.0=${address}&wp.1=${destination}&key=${apiKeyBingMaps}`;
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
@@ -86,6 +86,8 @@ async function handleAddressInput() {
           input.value = suggestion.address.formattedAddress;
           suggestionsContainer.innerHTML = "";
           city = suggestion.address.locality;
+          address = input.value;
+          console.log(suggestion);
           isLocationUpdated = true;
           displayEvents(city);
         });
@@ -98,7 +100,7 @@ async function handleAddressInput() {
   }
   // Add event listener for input change
   input.addEventListener("input", function () {
-    const updatedCity = input.value.trim();
+    const updatedCity = input.value;
     if (isLocationUpdated && updatedCity !== city) {
       city = updatedCity;
       displayEvents(city);

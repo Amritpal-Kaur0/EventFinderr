@@ -9,81 +9,104 @@
     <title>Event Display Page</title>
   </head>
   <body>
-    <div id="event-display-page">
-      <div>
-        <label for="interest">Choose your main interest:</label>
+    <div class="box">
+      <div id="location-input">
+        <br />
+        <label class="locationlabel" for="user-location"
+          >Enter your location:</label
+        >
         <br />
         <input
-          type="checkbox"
-          name="interest"
-          value="music"
-          id="interest-music"
+          type="text"
+          id="user-location"
+          placeholder="e.g. Toronto, ON"
+          oninput="handleAddressInput()"
         />
-        <label for="interest-music">Music</label>
-        <input
-          type="checkbox"
-          name="interest"
-          value="sports"
-          id="interest-sports"
-        />
-        <label for="interest-sports">Sports</label>
-        <input
-          type="checkbox"
-          name="interest"
-          value="arts"
-          id="interest-arts"
-        />
-        <label for="interest-arts">Arts and Theatre</label>
-        <input
-          type="checkbox"
-          name="interest"
-          value="comedy"
-          id="interest-comedy"
-        />
-        <label for="interest-comedy">Comedy</label>
-        <input
-          type="checkbox"
-          name="interest"
-          value="family"
-          id="interest-family"
-        />
-        <label for="interest-family">Family Events</label>
+        <div id="invalid-address-warning" class="invalid-address-warning">
+          <br />
+          This is not a valid address.
+        </div>
+        <button id="update-location">Update Location</button>
+        <div id="address-suggestions"></div>
       </div>
-
-      <div>
-        <label for="budget">Budget:</label>
+      <div id="event-display-page">
+        <label class="interests" for="interest">Choose your area(s) of interest: </label>
         <br />
-        <select name="budget" id="budget">
-          <option class="budgetstart" value="">Any</option>
-          <option value="less-than-100">Less than $100</option>
-          <option value="100-to-200">$100 to $200</option>
-          <option value="200-to-300">$200 to $300</option>
-          <option value="300-plus">$300+</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="distance">Total distance willing to travel:</label>
+        <div class="selections">
+          <label for="interest-music">Music</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="music"
+            id="interest-music"
+          />
+          <label for="interest-sports">Sports</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="sports"
+            id="interest-sports"
+          />
+          <label for="interest-arts">Arts and Theatre</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="arts"
+            id="interest-arts"
+          />
+          <label for="interest-comedy">Comedy</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="comedy"
+            id="interest-comedy"
+          />
+          <label for="interest-family">Family Events</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="family"
+            id="interest-family"
+          />
+        </div>
+        
         <br />
-        <select name="distance" id="distance">
-          <option value="">Any</option>
-          <option value="less-than-20km">Less than 20km</option>
-          <option value="20km-to-30km">20km to 30km</option>
-          <option value="30km-to-40km">30km to 40km</option>
-          <option value="40km-plus">40km+</option>
-        </select>
-      </div>
+        <br />
+        <div>
+          <label class="budget" for="budget">Budget:</label>
+          <br />
+          <select class="budget-bar" name="budget" id="budget">
+            <option class="budgetstart" value="">Any</option>
+            <option value="less-than-100">Less than $100</option>
+            <option value="100-to-200">$100 to $200</option>
+            <option value="200-to-300">$200 to $300</option>
+            <option value="300-plus">$300+</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <label class="distance" for="distance">Total distance willing to travel:</label>
+          <br />
+          <select class="travel-bar" name="distance" id="distance">
+            <option value="">Any</option>
+            <option value="less-than-20km">Less than 20km</option>
+            <option value="20km-to-30km">20km to 30km</option>
+            <option value="30km-to-40km">30km to 40km</option>
+            <option value="40km-plus">40km+</option>
+          </select>
+        </div>
 
-      <button type="button" onclick="location.href='../eventdisplay.html' ">
-        Filter
-      </button>
+        <button type="button" onclick="location.href='../eventdisplay.html' ">
+          Submit
+        </button>
+      </div>
+      <div id="events-list"></div>
+
+      <div id="demo-time"></div>
     </div>
-    <div id="events-list"></div>
-
-    <div id="demo-time"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="./js/mobiscroll.jquery.min.js"></script>
-    <script src="./eventsscript.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>

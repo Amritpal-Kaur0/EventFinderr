@@ -24,6 +24,7 @@ icons in homepage -https://remixicon.com/
  • Wenboo Ni
  • Jacob
  • Austin
+ • Yoshi
 
 # Licence
 

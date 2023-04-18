@@ -8,29 +8,31 @@
     <link href="./eventstyle.css" rel="stylesheet" />
     <title>Event Display Page</title>
   </head>
-  <body>
+  <body id="eventbody">
     <div class="box">
       <div id="location-input">
         <br />
-        <label class="locationlabel" for="user-location"
-          >Enter your location:</label
-        >
-        <br />
-        <input
-          type="text"
-          id="user-location"
-          placeholder="e.g. Toronto, ON"
-          oninput="handleAddressInput()"
-        />
-        <div id="invalid-address-warning" class="invalid-address-warning">
-          <br />
-          This is not a valid address.
-        </div>
-        <button id="update-location">Update Location</button>
-        <div id="address-suggestions"></div>
-      </div>
+        <div class="eventdisplay">
+          <h1 class="weekendtitle">Weekend Event Planner</h1>
+          <div id="location-input">
+            <label class="locationlabel" for="user-location"
+              >Enter your location:</label
+            >
+            <input
+              type="text"
+              id="user-location"
+              placeholder="e.g. Toronto, ON"
+              oninput="handleAddressInput()"
+            />
+            <div id="invalid-address-warning" class="invalid-address-warning">
+              This is not a valid address.
+            </div>
+            <div id="address-suggestions"></div>
+          </div>
       <div id="event-display-page">
-        <label class="interests" for="interest">Choose your area(s) of interest: </label>
+        <label class="interests" for="interest"
+          >Choose your area(s) of interest:
+        </label>
         <br />
         <div class="selections">
           <label for="interest-music">Music</label>
@@ -69,7 +71,7 @@
             id="interest-family"
           />
         </div>
-        
+
         <br />
         <br />
         <div>
@@ -85,7 +87,9 @@
         </div>
         <br />
         <div>
-          <label class="distance" for="distance">Total distance willing to travel:</label>
+          <label class="distance" for="distance"
+            >Total distance willing to travel:</label
+          >
           <br />
           <select class="travel-bar" name="distance" id="distance">
             <option value="">Any</option>

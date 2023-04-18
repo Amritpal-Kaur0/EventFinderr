@@ -126,3 +126,38 @@ button {
   left: 50%; 
   transform: translate(-50%, -50%); 
 }
+
+
+.locationlabel {
+  color: white;
+}
+.invalid-address-warning {
+  color: red;
+  font-size: 0.8rem;
+  display: none;
+}
+.address-suggestion {
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  margin: 0.1rem 0;
+  width: 700px;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.address-suggestion:hover {
+  background-color: #e8e8e8;
+}
+.event {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+#event-container,
+#selected-event,
+#travel-info {
+  margin: 1rem;
+}

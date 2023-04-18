@@ -75,24 +75,6 @@ if (filteredEvents.length) {
   eventsList.innerHTML = "<p>No events match the selected criteria.</p>";
 }
 
-mobiscroll.setOptions({
-  theme: "windows",
-  themeVariant: "dark",
-});
-
-$(function () {
-  $("#demo-time")
-    .mobiscroll()
-    .datepicker({
-      controls: ["time"],
-      select: "range",
-      display: "inline",
-      onChange: function (ev, inst) {
-        console.log(ev.value); // the selected ID
-      },
-    });
-});
-
 // Helper function to get the date range for the upcoming weekend
 function getUpcomingWeekendDateRange() {
   const today = new Date();

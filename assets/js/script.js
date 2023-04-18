@@ -265,3 +265,32 @@ async function displayEvents(userLocation) {
     }
   });
 })();
+
+$(function() {
+  var startTime
+  var endTime
+  function appendPicker() {
+    $(".daterange").append($(".daterangepicker"))
+  }
+  $('input[name="datetimes"]').daterangepicker({
+      timePicker: true,
+      startDate: moment().startOf('hour'),
+      endDate: moment().startOf('hour').add(32, 'hour'),
+      locale: {
+      format: 'hh:mm A'
+      }
+  });
+  appendPicker()
+    function bleh() {
+      console.log(startTime)
+      console.log(endTime)
+    }
+    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+      startTime = (picker.startDate.format('YYYY-MM-DD h:mm A'));
+      endTime = (picker.endDate.format('YYYY-MM-DD h:mm A'));
+      window.startTime = startTime
+      console.log(startTime)
+      console.log(endTime)
+      bleh()
+    });
+});

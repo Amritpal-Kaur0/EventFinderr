@@ -295,8 +295,8 @@ div {
 .invalid-address-warning {
   color: red;
   font-size: 0.8rem;
-  display: none;
-}
+  display: none;}
+  
 .address-suggestion {
   cursor: pointer;
   padding: 0.2rem 0.5rem;

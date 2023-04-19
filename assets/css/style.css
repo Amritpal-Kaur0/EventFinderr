@@ -34,6 +34,8 @@ a {
   text-decoration: none;
   color: var(--brand);
   transition: var(--transition);
+  border-radius: 10px;
+  margin-left: 10px;
 }
 a:hover {
   color: white !important;

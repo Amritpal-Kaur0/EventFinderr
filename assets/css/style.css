@@ -356,7 +356,7 @@ div {
   box-shadow: inset 22px 22px 16px #121212, inset -22px -22px 16px #303030;
 }
 
-#startTime {
+#startDate {
   border-radius: 8px;
 }
 
@@ -365,9 +365,4 @@ div {
 }
 .interest {
   margin-left: 20px;
-}
-
-#timeframe {
-  color: black;
-  border-radius: 10px;
 }

@@ -27,8 +27,9 @@ h6 {
   text-align: center;
   margin-bottom: 30px;
   font-weight: 600;
-  color: var(--dark);
+  color: black;
 }
+
 a {
   text-decoration: none;
   color: var(--brand);
@@ -225,9 +226,10 @@ div {
 
 #eventbody {
   background-image: url(../images/ticketeventspicture.jpg);
-  background-size: 100% 100%;
+  background-size: 100% 150%;
   background-repeat: no-repeat;
   background-position: center;
+  height: 2500px;
 }
 .weekendtitle {
   color: white;
@@ -289,18 +291,24 @@ div {
   border-radius: 8px;
 }
 
+#user-location {
+  color: black;
+  border-radius: 8px;
+  margin-left: 5px;
+}
 .locationlabel {
   color: white;
 }
 .invalid-address-warning {
   color: red;
   font-size: 0.8rem;
-  display: none;}
-  
+  display: none;
+}
 .address-suggestion {
   cursor: pointer;
   padding: 0.2rem 0.5rem;
   background-color: #f8f8f8;
+  color: black;
   border: 1px solid #ccc;
   margin: 0.1rem 0;
   width: 700px;
@@ -321,4 +329,25 @@ div {
 #selected-event,
 #travel-info {
   margin: 1rem;
+}
+
+#interestbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  color: white;
+}
+
+.interest {
+  margin-left: 20px;
+}
+
+#timeframe {
+  color: black;
+  border-radius: 10px;
 }

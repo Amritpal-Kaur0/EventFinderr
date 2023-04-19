@@ -23,17 +23,67 @@
     <!-- Events Display  -->
     <div class="eventdisplay">
       <h1 class="weekendtitle">Weekend Event Planner</h1>
+      <div id="location-input">
+        <label class="locationlabel" for="user-location"
+          >Enter your location:</label
+        >
+        <input
+          type="text"
+          id="user-location"
+          placeholder="e.g. Toronto, ON"
+          oninput="handleAddressInput()"
+        />
+        <div id="invalid-address-warning" class="invalid-address-warning">
+          This is not a valid address.
+        </div>
+        <div id="address-suggestions"></div>
+        <div id="interestbox">
+          <label for="interest">Choose your main interest:</label>
+          <br />
+          <input
+            type="checkbox"
+            name="interest"
+            value="Music"
+            id="interest-music"
+            class="interest"
+          />
+          <label for="interest-music">Music</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="Sports"
+            id="interest-sports"
+            class="interest"
+          />
+          <label for="interest-sports">Sports</label>
+          <input
+            type="checkbox"
+            name="interest"
+            value="Arts & Theatre"
+            id="interest-arts"
+            class="interest"
+          />
+          <label for="interest-arts">Arts and Theatre</label>
+
+          <input
+            type="checkbox"
+            name="interest"
+            value="family"
+            id="interest-family"
+            class="interest"
+          />
+          <label for="interest-family">Family Events</label>
+        </div>
+       
       <div id="event-container">
-        <h2>Events in Toronto</h2>
+        <h2>Upcoming Events:</h2>
       </div>
       <div id="selected-event">
-        <h2 class="weekendtitle">Selected Event</h2>
+        
       </div>
       <div id="travel-info">
         <h2 class="weekendtitle">Travel Information</h2>
-      </div>
-      <button id="save-btn">Save Events</button>
-      <div id="saved-location"></div>
+     
     </div>
 
     <script src="./assets/js/script.js"></script>

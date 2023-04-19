@@ -1,98 +1,3 @@
-//Filter Page JS
-// define a function to filter the events
-
-
-function filterEvents() {
-  // get the selected checkboxes for each filter
-  var interests = Array.from(
-    document.querySelectorAll('input[name="interest"]:checked')
-  ).map((interest) => interest.value);
-  var budget = document.getElementById("budget").value;
-  var distance = document.getElementById("distance").value;
-}
-
-$(function() {
-  var startTime
-  var endTime
-  function appendPicker() {
-    $(".daterange").append($(".daterangepicker"))
-  }
-  $('input[name="datetimes"]').daterangepicker({
-      timePicker: true,
-      startDate: moment().startOf('hour'),
-      endDate: moment().startOf('hour').add(32, 'hour'),
-      locale: {
-      format: 'hh:mm A'
-      }
-  });
-  appendPicker()
-    function bleh() {
-      console.log(startTime)
-      console.log(endTime)
-    }
-    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-      startTime = (picker.startDate.format('YYYY-MM-DD h:mm A'));
-      endTime = (picker.endDate.format('YYYY-MM-DD h:mm A'));
-      window.startTime = startTime
-      console.log(startTime)
-      console.log(endTime)
-      bleh()
-    });
-});
-
-//Save Events
-var events = {
-  name: "Event List",
-  interest: interests,
-  budget: budget,
-  distance: distanceInput,
-};
-
-// filter the events based on the selected checkboxes
-const filteredEvents = events.filter((evt) => {
-  if (interests.length && !interests.includes(evt.interest)) {
-    return false;
-  }
-  if (budgets.length && !budgets.includes(evt.budget)) {
-    return false;
-  }
-  if (distances.length && !distances.includes(evt.distance)) {
-    return false;
-  }
-  return true;
-});
-
-// display the filtered events
-const eventsList = document.getElementById("events-list");
-eventsList.innerHTML = "";
-if (filteredEvents.length) {
-  filteredEvents.forEach((evt) => {
-    const eventElement = document.createElement("div");
-    eventElement.innerHTML = `<h2>${evt.name}</h2><p>Interest: ${evt.interest}</p><p>Budget: ${evt.budget}</p><p>Distance: ${evt.distance}</p>`;
-    eventsList.appendChild(eventElement);
-  });
-} else {
-  eventsList.innerHTML = "<p>No events match the selected criteria.</p>";
-}
-
-mobiscroll.setOptions({
-  theme: "windows",
-  themeVariant: "dark",
-});
-
-$(function () {
-  $("#demo-time")
-    .mobiscroll()
-    .datepicker({
-      controls: ["time"],
-      select: "range",
-      display: "inline",
-      onChange: function (ev, inst) {
-        console.log(ev.value); // the selected ID
-      },
-    });
-});
-
 // Helper function to get the date range for the upcoming weekend
 function getUpcomingWeekendDateRange() {
   const today = new Date();
@@ -114,6 +19,7 @@ async function getEvents() {
   const apiKeyTicketMaster = "xahcBviTrD5wt7duynUO6G7x2HkhwDKp";
   const { startDate, endDate } = getUpcomingWeekendDateRange();
   const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${city}&startDateTime=${startDate}T00:00:00Z&endDateTime=${endDate}T23:59:59Z&apikey=${apiKeyTicketMaster}`;
+  console.log(url);
   const response = await fetch(url);
   const data = await response.json();
   return data._embedded.events;
@@ -225,34 +131,44 @@ function displayTravelInfo(travelInfo) {
     modeInfo.classList.add("travel-info-mode");
     modeInfo.textContent = `${mode}: ${travelInfo[mode].distance.toFixed(
       2
-    )} km, ${travelInfo[mode].time.toFixed(0)} minutes`;
+    )} km`;
+    console.log(travelInfo);
     travelInfoContainer.appendChild(modeInfo);
   }
 }
+
+// Display event data and attach click event listeners to show travel information
 // Display event data and attach click event listeners to show travel information
 async function displayEvents(userLocation) {
+  // Get events based on the user location
   const events = await getEvents(userLocation);
+  // Get the event container element and clear its content
   const eventContainer = document.getElementById("event-container");
   eventContainer.innerHTML = "";
 
+  // Loop through each event and create a new event element
   events.forEach((event) => {
     const eventElement = document.createElement("div");
     eventElement.classList.add("event");
 
+    // Create an event title element and set its text content to the event name
     const eventTitle = document.createElement("div");
     eventTitle.classList.add("event-title");
     eventTitle.textContent = event.name;
 
+    // Create an event time element and set its text content to the event start time
     const eventTime = document.createElement("div");
     eventTime.classList.add("event-time");
     eventTime.textContent = new Date(
       event.dates.start.dateTime
     ).toLocaleString();
 
+    // Add the event title and time elements to the event element
     eventElement.appendChild(eventTitle);
     eventElement.appendChild(eventTime);
 
-    eventElement.addEventListener("click", async () => {
+    // Attach a click event listener to the event element that shows travel information
+    eventElement.addEventListener("click", async function () {
       const selectedEventContainer = document.getElementById("selected-event");
       selectedEventContainer.innerHTML = "";
 
@@ -267,33 +183,103 @@ async function displayEvents(userLocation) {
       displayTravelInfo(travelInfo);
     });
 
+    // Add the event element to the event container
     eventContainer.appendChild(eventElement);
   });
 }
 
-// Initialize the app
-(async function init() {
-  await displayEvents();
-  const saveBtn = document.getElementById("save-btn");
-  saveBtn.addEventListener("click", saveEvents);
+// Filter events based on the user location and selected interests
+async function filterEvents() {
+  // Get events based on the user location
+  const userLocation = document.getElementById("location-input").value;
+  const events = await getEvents(userLocation);
 
-  const updateLocationBtn = document.getElementById("update-location");
-  updateLocationBtn.addEventListener("click", async () => {
-    const userLocationInput = document.getElementById("user-location");
-    const userLocation = userLocationInput.value.trim();
-    if (userLocation) {
-      const location = await getLocation(userLocation);
-      if (location) {
-        const coordinates = location.point.coordinates;
-        const formattedAddress = location.address.formattedAddress;
-        await displayEvents(`${coordinates[0]},${coordinates[1]}`);
-        const savedLocationDiv = document.getElementById("saved-location");
-        savedLocationDiv.textContent = `Saved location: ${formattedAddress}`;
-      } else {
-        alert("Please enter a valid location.");
-      }
-    } else {
-      alert("Please enter a valid location.");
+  // Get the event container element and clear its content
+  const eventContainer = document.getElementById("event-container");
+  eventContainer.innerHTML = "";
+
+  // Get the selected interests from the checkboxes
+  const sportsSelected = document.getElementById("interest-sports").checked;
+  const musicSelected = document.getElementById("interest-music").checked;
+  const artsTheaterSelected = document.getElementById("interest-arts").checked;
+  const familySelected = document.getElementById("interest-family").checked;
+
+  // Loop through each event and create a new event element if it matches the selected interests
+  events.forEach((event) => {
+    // Get the category and family of the event
+    const category = event.classifications[0].segment.name.toLowerCase();
+    const isFamily = event.classifications[0].family;
+
+    // Determine whether the event should be shown based on the selected interests
+    const showSports = sportsSelected && category === "sports" && !isFamily;
+    const showMusic = musicSelected && category === "music" && !isFamily;
+    const showArtsTheater =
+      artsTheaterSelected &&
+      (category === "arts & theatre" || category === "arts & theater") &&
+      !isFamily;
+    const showFamily = familySelected && isFamily;
+
+    // Create a new event element if it matches the selected interests
+    if (showSports || showMusic || showArtsTheater || showFamily) {
+      // Create a new div element with the class "event"
+      const eventElement = document.createElement("div");
+      eventElement.classList.add("event");
+
+      // Create a new div element with the class "event-title" and set its text content to the name of the event
+      const eventTitle = document.createElement("div");
+      eventTitle.classList.add("event-title");
+      eventTitle.textContent = event.name;
+
+      // Create a new div element with the class "event-time" and set its text content to the start date/time of the event
+      const eventTime = document.createElement("div");
+      eventTime.classList.add("event-time");
+      eventTime.textContent = new Date(
+        event.dates.start.dateTime
+      ).toLocaleString();
+
+      // Append the event title and event time elements to the event element
+      eventElement.appendChild(eventTitle);
+      eventElement.appendChild(eventTime);
+
+      // Add a click event listener to the event element
+      eventElement.addEventListener("click", async function () {
+        // Get the element with the ID "selected-event" and clear its contents
+        const selectedEventContainer =
+          document.getElementById("selected-event");
+        selectedEventContainer.innerHTML = "";
+
+        // Clone the event element and append it to the selected event container
+        const clonedEventElement = eventElement.cloneNode(true);
+        selectedEventContainer.appendChild(clonedEventElement);
+
+        // Calculate the travel information from the user's location to the event's venue and display it
+        const destination =
+          event._embedded.venues[0].address.line1 +
+          ", " +
+          event._embedded.venues[0].city.name;
+        const travelInfo = await calculateTravelInfo(userLocation, destination);
+        displayTravelInfo(travelInfo);
+      });
+
+      // Append the event element to the container for events
+      eventContainer.appendChild(eventElement);
     }
   });
-})();
+}
+// Call filterEvents to initially show all events
+filterEvents();
+
+// Wait for the user to select any of the checkboxes
+document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    // Call filterEvents to filter the events based on the selected interests
+    filterEvents();
+    // Check if all checkboxes are unchecked and display all events if they are
+    const allUnchecked = !Array.from(
+      document.querySelectorAll('input[name="interest"]')
+    ).some((checkbox) => checkbox.checked);
+    if (allUnchecked) {
+      displayEvents(document.getElementById("location-input").value);
+    }
+  });
+});

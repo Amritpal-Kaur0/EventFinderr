@@ -243,7 +243,15 @@ div {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 50px;
+  background: #212121;
+  box-shadow: inset 22px 22px 16px #121212, inset -22px -22px 16px #303030;
 }
+
+.event:hover {
+  opacity: 0.8;
+}
+
 .event-title {
   font-weight: bold;
   margin-bottom: 5px;
@@ -341,8 +349,18 @@ div {
   border: 1px solid #ccc;
   font-size: 20px;
   color: white;
+  border-radius: 50px;
+  background: #212121;
+  box-shadow: inset 22px 22px 16px #121212, inset -22px -22px 16px #303030;
 }
 
+#startTime {
+  border-radius: 8px;
+}
+
+#startlabel {
+  margin-left: 20px;
+}
 .interest {
   margin-left: 20px;
 }

@@ -235,6 +235,7 @@ div {
 }
 .weekendtitle {
   color: white;
+  border-bottom: 2px solid white;
 }
 .event {
   border: 1px solid #ccc;

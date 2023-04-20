@@ -11,6 +11,9 @@ Find an event by clicking the button on the homepage. Enter your location and us
 
 ## Credits
 
+## The URL of the GitHub repository-
+
+https://github.com/Amritpal-Kaur0/EventFinderr
 
 ## The URL of functional,deployed application:-
 

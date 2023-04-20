@@ -273,7 +273,7 @@ filterEvents();
 
 // Wait for the user to select any of the checkboxes
 document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
-  checkbox.addEventListener("change", function () {
+  checkbox.addEventListener("change", function (filter) {
     // Call filterEvents to filter the events based on the selected interests
 
     filterEvents();
@@ -346,3 +346,8 @@ async function filterEventsByDate() {
 // Add event listener for date input change
 const dateInput = document.getElementById("startDate");
 dateInput.addEventListener("input", filterEventsByDate);
+
+const resetDateBtn = document.getElementById("resetDate");
+resetDateBtn.addEventListener("click", function () {
+  dateInput.value = "";
+});

@@ -367,3 +367,8 @@ div {
 .interest {
   margin-left: 20px;
 }
+
+#resetDate {
+  border-radius: 10px;
+  margin-left: 10px;
+}

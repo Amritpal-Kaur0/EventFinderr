@@ -1,4 +1,4 @@
-# EventFinder
+# EventFinderr
 
 ## Description
 
@@ -30,7 +30,6 @@ https://github.com/Amritpal-Kaur0/EventFinderr
 icons in homepage -https://remixicon.com/
 
 ## Team Members
-
 
 • Amritpal Kaur
 • Wenboo Ni

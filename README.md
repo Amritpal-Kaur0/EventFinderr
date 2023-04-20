@@ -11,7 +11,6 @@ Find an event by clicking the button on the homepage. Enter your location and us
 
 ## Credits
 
-## Acceptance Criteria
 
 ## The URL of functional,deployed application:-
 

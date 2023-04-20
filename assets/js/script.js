@@ -275,7 +275,9 @@ filterEvents();
 document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
   checkbox.addEventListener("change", function () {
     // Call filterEvents to filter the events based on the selected interests
+
     filterEvents();
+
     // Check if all checkboxes are unchecked and display all events if they are
     const allUnchecked = !Array.from(
       document.querySelectorAll('input[name="interest"]')

@@ -19,10 +19,6 @@ Find an event by clicking the button on the homepage. Enter your location and us
 
 https://github.com/Amritpal-Kaur0/EventFinderr
 
-## The URL of the GitHub repository-
-
-https://github.com/Amritpal-Kaur0/EventFinderr
-
 ## Screenshot
 
 ## Resourses-

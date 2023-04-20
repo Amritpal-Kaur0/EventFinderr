@@ -273,7 +273,7 @@ filterEvents();
 
 // Wait for the user to select any of the checkboxes
 document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
-  checkbox.addEventListener("change", function (filter) {
+  checkbox.addEventListener("change", function () {
     // Call filterEvents to filter the events based on the selected interests
 
     filterEvents();

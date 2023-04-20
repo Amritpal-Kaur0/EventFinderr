@@ -346,3 +346,8 @@ async function filterEventsByDate() {
 // Add event listener for date input change
 const dateInput = document.getElementById("startDate");
 dateInput.addEventListener("input", filterEventsByDate);
+
+const resetDateBtn = document.getElementById("resetDate");
+resetDateBtn.addEventListener("click", function () {
+  dateInput.value = "";
+});

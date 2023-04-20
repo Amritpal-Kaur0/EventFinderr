@@ -107,6 +107,8 @@ async function handleAddressInput() {
       displayEvents(city);
     }
   });
+  const locationInput = document.getElementById("user-location");
+  locationInput.addEventListener("input", handleAddressInput);
 }
 
 // Calculate and display travel information for different travel mode
@@ -209,7 +211,7 @@ async function filterEvents() {
     // Get the category and family of the event
     const category = event.classifications[0].segment.name.toLowerCase();
     const isFamily = event.classifications[0].family;
-
+    console.log(event);
     // Determine whether the event should be shown based on the selected interests
     const showSports = sportsSelected && category === "sports" && !isFamily;
     const showMusic = musicSelected && category === "music" && !isFamily;
@@ -283,3 +285,62 @@ document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
     }
   });
 });
+
+async function filterEventsByDate() {
+  const userLocation = document.getElementById("location-input").value;
+  const events = await getEvents(userLocation);
+
+  const eventContainer = document.getElementById("event-container");
+  eventContainer.innerHTML = "";
+
+  const dateInput = document.getElementById("startDate").value;
+  const inputDate = new Date(dateInput);
+
+  events.forEach((event) => {
+    const eventDate = new Date(event.dates.start.localDate);
+
+    if (
+      eventDate.getFullYear() === inputDate.getFullYear() &&
+      eventDate.getMonth() === inputDate.getMonth() &&
+      eventDate.getDate() === inputDate.getDate()
+    ) {
+      const eventElement = document.createElement("div");
+      eventElement.classList.add("event");
+
+      const eventTitle = document.createElement("div");
+      eventTitle.classList.add("event-title");
+      eventTitle.textContent = event.name;
+
+      const eventTime = document.createElement("div");
+      eventTime.classList.add("event-time");
+      eventTime.textContent = new Date(
+        event.dates.start.dateTime
+      ).toLocaleString();
+
+      eventElement.appendChild(eventTitle);
+      eventElement.appendChild(eventTime);
+
+      eventElement.addEventListener("click", async function () {
+        const selectedEventContainer =
+          document.getElementById("selected-event");
+        selectedEventContainer.innerHTML = "";
+
+        const clonedEventElement = eventElement.cloneNode(true);
+        selectedEventContainer.appendChild(clonedEventElement);
+
+        const destination =
+          event._embedded.venues[0].address.line1 +
+          ", " +
+          event._embedded.venues[0].city.name;
+        const travelInfo = await calculateTravelInfo(userLocation, destination);
+        displayTravelInfo(travelInfo);
+      });
+
+      eventContainer.appendChild(eventElement);
+    }
+  });
+}
+
+// Add event listener for date input change
+const dateInput = document.getElementById("startDate");
+dateInput.addEventListener("input", filterEventsByDate);

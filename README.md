@@ -31,7 +31,7 @@ icons in homepage -https://remixicon.com/
 • Jacob
 • Austin Grech
 • Yoshi
-• https://remixicon.com/ (homepage icons)
+
 
 # Licence
 

@@ -191,20 +191,35 @@ async function displayEvents(userLocation) {
 }
 
 // Filter events based on the user location and selected interests
+// This function filters events based on user input for location, interests, and date
 async function filterEvents() {
+  // Get the user's location input
   const userLocation = document.getElementById("location-input").value;
+
+  // Retrieve events for the user's location
   const events = await getEvents(userLocation);
+
+  // Clear the event container
   const eventContainer = document.getElementById("event-container");
   eventContainer.innerHTML = "";
+
+  // Check which interests the user has selected
   const sportsSelected = document.getElementById("interest-sports").checked;
   const musicSelected = document.getElementById("interest-music").checked;
   const artsTheaterSelected = document.getElementById("interest-arts").checked;
   const familySelected = document.getElementById("interest-family").checked;
+
+  // Get the user's date input
   const dateInput = document.getElementById("startDate").value;
   const inputDate = new Date(dateInput);
+
+  // Iterate through each event
   events.forEach((event) => {
+    // Determine the category and family status of the event
     const category = event.classifications[0].segment.name.toLowerCase();
     const isFamily = event.classifications[0].family;
+
+    // Determine if the event should be shown based on the user's interests
     const showSports = sportsSelected && category === "sports" && !isFamily;
     const showMusic = musicSelected && category === "music" && !isFamily;
     const showArtsTheater =
@@ -212,34 +227,46 @@ async function filterEvents() {
       (category === "arts & theatre" || category === "arts & theater") &&
       !isFamily;
     const showFamily = familySelected && isFamily;
+
+    // Determine if the event should be shown based on the user's date input
     const eventDate = new Date(event.dates.start.localDate);
     const showEventByDate =
       !dateInput ||
       (eventDate.getFullYear() === inputDate.getFullYear() &&
         eventDate.getMonth() === inputDate.getMonth() &&
         eventDate.getDate() === inputDate.getDate());
+
+    // Add the event to the event container if it should be shown
     if (
       showEventByDate &&
       (showSports || showMusic || showArtsTheater || showFamily)
     ) {
+      // Create a new div element with the class "event"
       const eventElement = document.createElement("div");
       eventElement.classList.add("event");
+      // Create a new div element with the class "event-title" and set its text content to the name of the event
       const eventTitle = document.createElement("div");
       eventTitle.classList.add("event-title");
       eventTitle.textContent = event.name;
+      // Create a new div element with the class "event-time" and set its text content to the start date/time of the event
       const eventTime = document.createElement("div");
       eventTime.classList.add("event-time");
       eventTime.textContent = new Date(
         event.dates.start.dateTime
       ).toLocaleString();
+      // Append the event title and event time elements to the event element
       eventElement.appendChild(eventTitle);
       eventElement.appendChild(eventTime);
+      // Add a click event listener to the event element
       eventElement.addEventListener("click", async function () {
+        // Get the element with the ID "selected-event" and clear its contents
         const selectedEventContainer =
           document.getElementById("selected-event");
         selectedEventContainer.innerHTML = "";
+        // Clone the event element and append it to the selected event container
         const clonedEventElement = eventElement.cloneNode(true);
         selectedEventContainer.appendChild(clonedEventElement);
+        // Calculate the travel information from the user's location to the event's venue and display it
         const destination =
           event._embedded.venues[0].address.line1 +
           ", " +
@@ -247,10 +274,12 @@ async function filterEvents() {
         const travelInfo = await calculateTravelInfo(userLocation, destination);
         displayTravelInfo(travelInfo);
       });
+      // Append the event element to the container for events
       eventContainer.appendChild(eventElement);
     }
   });
 }
+// Call filterEvents to initially show all events
 filterEvents();
 document.querySelectorAll('input[name="interest"]').forEach((checkbox) => {
   checkbox.addEventListener("change", function () {

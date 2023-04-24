@@ -17,6 +17,7 @@ https://github.com/Amritpal-Kaur0/EventFinderr
 
 ## The URL of functional,deployed application:-
 
+https://amritpal-kaur0.github.io/EventFinderr/
 
 ## Screenshot
 
